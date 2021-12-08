@@ -1,0 +1,34 @@
+<mat-drawer-container>
+    <mat-toolbar>
+        <button mat-icon-button type="button" (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </mat-toolbar>
+
+
+    <mat-drawer #drawer mode="push">
+        <p>Some text here for testing uwu</p>
+        <button (click)="drawer.toggle()" (click)="sayHello()">Content</button>
+    </mat-drawer>
+
+    <app-note></app-note>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Add a title</mat-label>
+        <input #inputTitle type="text" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Write something</mat-label>
+        <textarea #textAreaContent matInput></textarea>
+    </mat-form-field>
+    
+    <button (click)="addNote(inputTitle.value, textAreaContent.value)">Add Note</button>
+
+    <div ngFor="let note of notes">
+        <p>{{note.toString()}}</p>
+        <br>
+    </div>
+
+    <pre>{{test}}</pre>
+</mat-drawer-container>
