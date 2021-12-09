@@ -15,19 +15,12 @@ export class AppComponent {
 
   note: Array<Note> = [];
 
-  sayHello() { 
-    var hola = new Note("Mi dia a dia", "Esto es una nota");
-    this.note.push(hola);
-
-    var x = this.note.pop() as Note;
-    this.test = x.toString();
-  }
-
   addNote(title: string, content: string) {
     var note = new Note(title, content);
     this.note.push(note);
     this.test = 'new item';
-    this.title = '';
-    this.content = '';
   }
+
+  deleteNote(note: Note) {}
+
 }

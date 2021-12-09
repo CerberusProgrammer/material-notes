@@ -26,6 +26,6 @@ export class Note {
 
     toString() {
         return "Title: " + this.title + '\n'
-            + "Content: " + this.content;
+            + "Content: " + this.content + '\n';
     }
 }

@@ -3,32 +3,40 @@
         <button mat-icon-button type="button" (click)="drawer.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
+        <span class="spacer"></span>
+        <button mat-mini-fab color="primary" type="button">
+            <mat-icon>add</mat-icon>
+        </button>
     </mat-toolbar>
 
-
     <mat-drawer #drawer mode="push">
-        <p>Some text here for testing uwu</p>
-        <button (click)="drawer.toggle()" (click)="sayHello()">Content</button>
     </mat-drawer>
 
-    <app-note></app-note>
+    <div class="content-wrapper">
+        <app-note></app-note>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Add a title</mat-label>
-        <input #inputTitle type="text" matInput>
-    </mat-form-field>
+        <mat-card>
+            <mat-card-title>
+                <mat-form-field appearance="fill">
+                    <mat-label>Add a title</mat-label>
+                    <input #inputTitle type="text" matInput>
+                </mat-form-field>
+            </mat-card-title>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Write something</mat-label>
-        <textarea #textAreaContent matInput></textarea>
-    </mat-form-field>
-    
-    <button (click)="addNote(inputTitle.value, textAreaContent.value)">Add Note</button>
+            <mat-card-content>
+                <mat-form-field appearance="fill">
+                    <mat-label>Write something</mat-label>
+                    <textarea #textAreaContent matInput></textarea>
+                </mat-form-field>
+            </mat-card-content>
 
-    <div ngFor="let note of notes">
-        <p>{{note.toString()}}</p>
-        <br>
+            <button mat-raised-button color="primary" (click)="addNote(inputTitle.value, textAreaContent.value)">Add Note</button>
+        </mat-card>
+
+        <div *ngFor="let note of note">
+            <pre>{{note}}</pre>
+        </div>
+
+        <pre>{{test}}</pre>
     </div>
-
-    <pre>{{test}}</pre>
 </mat-drawer-container>
