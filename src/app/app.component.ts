@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Note } from './note';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -8,19 +9,64 @@ import { Note } from './note';
 })
 export class AppComponent {
 
-  test: string = 'test';
-
   title: string = '';
   content: string = '';
 
-  note: Array<Note> = [];
+  notes: Array<Note> = [];
+
+  test: string = '';
+
+  constructor(public dialog: MatDialog) {}
 
   addNote(title: string, content: string) {
     var note = new Note(title, content);
-    this.note.push(note);
-    this.test = 'new item';
+    this.notes.push(note);
   }
 
-  deleteNote(note: Note) {}
+  createNote(title: string, content: string) {
+    this.openDialog();
+  }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(AppDialog, {
+      width: '250px',
+      data: {title: this.title, content: this.content},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      var note = new Note(result.title, result.content);
+      this.notes.push(note);
+    });
+
+    this.saveToObject();
+  }
+
+  saveToObject() {
+    var json = JSON.stringify(this.notes);
+    this.test = json;
+  }
+
+  writeFile() {
+  }
+}
+
+@Component({
+  selector: 'app-dialog',
+  templateUrl: 'app-dialog.html',
+})
+export class AppDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<AppDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: Note,
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  addNewNote() {
+
+    this.onNoClick();
+  }
 }

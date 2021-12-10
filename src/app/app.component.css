@@ -1,8 +1,14 @@
 .content-wrapper {
-    padding: 1%;
+    padding: 2%;
     height: 836px;
 }
 
 .spacer {
     flex: 1 1 auto;
+}
+
+.mat-card-display {
+    padding: 2%;
+    width: 95%;
+    word-wrap: break-word;
 }

@@ -4,7 +4,7 @@
             <mat-icon>menu</mat-icon>
         </button>
         <span class="spacer"></span>
-        <button mat-mini-fab color="primary" type="button">
+        <button mat-mini-fab color="primary" type="button" matTooltip="Add a new note" (click)="createNote('1', '1')">
             <mat-icon>add</mat-icon>
         </button>
     </mat-toolbar>
@@ -12,31 +12,14 @@
     <mat-drawer #drawer mode="push">
     </mat-drawer>
 
+    <p>{{test}}</p>
+
     <div class="content-wrapper">
-        <app-note></app-note>
-
-        <mat-card>
-            <mat-card-title>
-                <mat-form-field appearance="fill">
-                    <mat-label>Add a title</mat-label>
-                    <input #inputTitle type="text" matInput>
-                </mat-form-field>
-            </mat-card-title>
-
-            <mat-card-content>
-                <mat-form-field appearance="fill">
-                    <mat-label>Write something</mat-label>
-                    <textarea #textAreaContent matInput></textarea>
-                </mat-form-field>
-            </mat-card-content>
-
-            <button mat-raised-button color="primary" (click)="addNote(inputTitle.value, textAreaContent.value)">Add Note</button>
-        </mat-card>
-
-        <div *ngFor="let note of note">
-            <pre>{{note}}</pre>
+        <div class="mat-card-display" *ngFor="let n of notes">
+            <mat-card>
+                <mat-card-title>{{n.title}}</mat-card-title>
+                <mat-card-content>{{n.content}}</mat-card-content>
+            </mat-card>
         </div>
-
-        <pre>{{test}}</pre>
     </div>
 </mat-drawer-container>

@@ -1,0 +1,17 @@
+<mat-card>
+    <mat-card-title>
+        <mat-form-field appearance="fill">
+            <mat-label>Add a title</mat-label>
+            <input #inputTitle type="text" matInput>
+        </mat-form-field>
+    </mat-card-title>
+
+    <mat-card-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Write something</mat-label>
+            <textarea #textAreaContent matInput></textarea>
+        </mat-form-field>
+    </mat-card-content>
+
+    <button mat-raised-button color="primary" (click)="addNote(inputTitle.value, textAreaContent.value)">Add Note</button>
+</mat-card>
