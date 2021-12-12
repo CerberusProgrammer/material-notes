@@ -18,12 +18,7 @@ export class AppComponent {
 
   constructor(public dialog: MatDialog) {}
 
-  addNote(title: string, content: string) {
-    var note = new Note(title, content);
-    this.notes.push(note);
-  }
-
-  createNote(title: string, content: string) {
+  createNote() {
     this.openDialog();
   }
 
@@ -39,14 +34,18 @@ export class AppComponent {
     });
 
     this.saveToObject();
+    this.saveToLocalStorage();
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem('notes', JSON.stringify(this.notes));
+    let notes = localStorage.getItem('notes');
+    console.log(notes);
   }
 
   saveToObject() {
     var json = JSON.stringify(this.notes);
     this.test = json;
-  }
-
-  writeFile() {
   }
 }
 
