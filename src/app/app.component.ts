@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Note } from './note';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ export class AppComponent {
 
   createNote() {
     this.openDialog();
+    this.saveToObject();
   }
 
   openDialog() {
@@ -45,6 +47,8 @@ export class AppComponent {
 
   saveToObject() {
     var json = JSON.stringify(this.notes);
+    let blob = new Blob([json], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "notes.json");
     this.test = json;
   }
 }
